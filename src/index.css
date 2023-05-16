@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	background-color: #e9ecef;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+/* .navbar {
+  border: 2px solid red;
+  padding: 10px 0;
+  box-shadow: 0px 2px 15px rgb(0 0 0 / 10%);
+  display: flex;
+  
+} */
+
+
+.result-card {
+
+	width: 50%;
+	display: flex;
+	text-align: left;
+
+}
+
+.results-list {
+
+	width: 55%;
+	/* border: 2px solid red; */
+	
+}
+
+.review-count {
+	color: charcoal;
+}
+
+.results {
+	display: flex;
+	flex-direction: column;
+	height: 75vh;
+	margin-bottom: 10rem;
+}
+
+.results-section {
+	display: flex;
+	/* border: 2px solid yellow; */
+	justify-content: space-between;
+
+
+}
+
+.search {
+	/* bordeR: 2px solid green; */
+	width: 45%;
+}
+
+li[class*="ant-pagination-item ant-pagination-item"] {
+	font-size: 2rem;
+}
+
+.ant-pagination-options {
+	visibility: hidden;
+}
+
+.search-input {
+	width: 24%;
+	margin-bottom: 1rem;
+}
+
+.map {
+	border: 2px solid red;
+}
+
+.map-section {
+	margin-top: 4rem;
+}
+
+.main-button {
+	background-color: antiquewhite;
+}
+
