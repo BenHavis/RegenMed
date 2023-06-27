@@ -1,34 +1,12 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
 
-
-const StyledCard = styled.div`
-
-width: 15%;
-display: flex;
-flex-direction: column;
-background-color: white;
-padding: 0 1% 0 1%;
-font-family: "Mazda Type",helvetica,arial,sans-serif;
-border-radius: 8%;
-
-h2 {
-	color: #111;
-}
-
-p {
-	color: #444444;
-	height: 50%;
-}
-`
-
-const Card = ({ header, body, icon }) => {
+const Card = ({ header, body }) => {
   return (
-    <StyledCard>
-      <h2>{header}</h2>
-      <p>{body}</p>
-    </StyledCard>
-  )
-}
+    <div className="w-64 bg-white rounded-lg shadow-md mx-4 p-4">
+      <h2 className="text-xl font-semibold mb-2">{header}</h2>
+      <p className="text-gray-700">{body}</p>
+    </div>
+  );
+};
 
-export default Card
+export default Card;

@@ -1,8 +1,8 @@
-import React from 'react'
-import Card from './Card'
-import styled from 'styled-components'
+import React from 'react';
+import Card from './Card';
+import styled from 'styled-components';
 
-const StyledList = styled.div`
+const StyledCardList = styled.div`
   display: flex;
   justify-content: space-around;
   height: 40vh;
@@ -14,39 +14,45 @@ const StyledList = styled.div`
     flex-direction: column;
     align-items: center;
     height: auto;
-		border: 2px solid red;
-		width: 90%;
+    width: 90%;
   }
-`
+`;
 
-const Cardlist = () => {
+const CardList = () => {
   const cards = [
     {
-
+      id: 1,
       title: 'Stem Cell',
-      body: 'Stem cell therapy is a form of regenerative medicine designed to repair damaged cells within the body by reducing inflammation and modulating the immune system.'
+      body:
+        'Stem cell therapy is a form of regenerative medicine designed to repair damaged cells within the body by reducing inflammation and modulating the immune system.',
     },
     {
-
+      id: 2,
       title: 'Platelet-Rich Plasma',
-      body: 'Platelet-rich plasma (PRP) therapy uses injections of a concentration of a patient’s own platelets to accelerate the healing of injured tendons, ligaments, muscles and joints.'
+      body:
+        'Platelet-rich plasma (PRP) therapy uses injections of a concentration of a patient’s own platelets to accelerate the healing of injured tendons, ligaments, muscles and joints.',
     },
     {
-
+      id: 3,
       title: 'Prolotherapy',
-      body: 'Prolotherapy is a non-surgical injection procedure used to relieve back pain by treating connective tissue injuries (ligaments and tendons) of the musculoskeletal system that have not healed by either rest or conservative therapy in order to relieve back pain.'
+      body:
+        'Prolotherapy is a non-surgical injection procedure used to relieve back pain by treating connective tissue injuries (ligaments and tendons) of the musculoskeletal system that have not healed by either rest or conservative therapy in order to relieve back pain.',
     },
     {
+      id: 4,
       title: 'Gene Therapy',
-      body: 'Gene therapy is a medical approach that treats or prevents disease by correcting the underlying genetic problem.'
-    }
+      body:
+        'Gene therapy is a medical approach that treats or prevents disease by correcting the underlying genetic problem.',
+    },
+  ];
 
-  ]
   return (
-    <StyledList>
-      {cards.map((card) => <Card body={card.body} header={card.title} key={card.title} />)}
-    </StyledList>
-  )
-}
+    <StyledCardList>
+      {cards.map((card) => (
+        <Card key={card.id} header={card.title} body={card.body} />
+      ))}
+    </StyledCardList>
+  );
+};
 
-export default Cardlist
+export default CardList;
