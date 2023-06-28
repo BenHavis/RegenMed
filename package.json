@@ -31,8 +31,6 @@
     "nodemailer": "^6.9.3",
     "pg": "^8.11.1",
     "react": "^18.2.0",
-    "react-autocomplete": "^1.8.1",
-    "react-country-dropdown": "^1.1.0",
     "react-country-region-selector": "^3.6.1",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
