@@ -1,7 +1,6 @@
 {
   "name": "regenglobal",
   "version": "0.1.0",
-	"homepage": "https://BenHavis.github.io/RegenMedTest",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -54,9 +53,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-		"predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -78,7 +75,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@iconify/react": "^4.1.1",
-    "gh-pages": "^5.0.0"
+    "@iconify/react": "^4.1.1"
   }
 }
