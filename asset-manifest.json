@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/RegenMed/static/css/main.b8d2d326.css",
-    "main.js": "/RegenMed/static/js/main.d223919c.js",
-    "static/media/newdnagif.gif": "/RegenMed/static/media/newdnagif.310ce8ce23511262c451.gif",
-    "static/media/axios.cjs": "/RegenMed/static/media/axios.e7d77f0967a69d31d7fc.cjs",
-    "index.html": "/RegenMed/index.html",
-    "main.b8d2d326.css.map": "/RegenMed/static/css/main.b8d2d326.css.map",
-    "main.d223919c.js.map": "/RegenMed/static/js/main.d223919c.js.map"
+    "main.css": "/RegenMedTest/static/css/main.b8d2d326.css",
+    "main.js": "/RegenMedTest/static/js/main.dc0e29a1.js",
+    "static/media/newdnagif.gif": "/RegenMedTest/static/media/newdnagif.310ce8ce23511262c451.gif",
+    "static/media/axios.cjs": "/RegenMedTest/static/media/axios.e7d77f0967a69d31d7fc.cjs",
+    "index.html": "/RegenMedTest/index.html",
+    "main.b8d2d326.css.map": "/RegenMedTest/static/css/main.b8d2d326.css.map",
+    "main.dc0e29a1.js.map": "/RegenMedTest/static/js/main.dc0e29a1.js.map"
   },
   "entrypoints": [
     "static/css/main.b8d2d326.css",
-    "static/js/main.d223919c.js"
+    "static/js/main.dc0e29a1.js"
   ]
 }
