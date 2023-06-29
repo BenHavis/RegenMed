@@ -7,8 +7,8 @@ import styled from 'styled-components'
 import { AuthContext } from '../AuthContext'
 import Select from 'react-select'
 import axios from 'axios'
-import AsyncSelect from 'react-select/async';
-
+import AsyncSelect from 'react-select/async'
+import { analytics } from '../firebase'
 
 const mainColor = '#4811ab' // Define the main color variable
 
@@ -154,7 +154,8 @@ const Profile = () => {
   const [options, setOptions] = useState([])
   const [cardStates, setCardStates] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
-	const [profileId, setProfileId] = useState('');
+	const [profileId, setProfileId] = useState(``)
+
 
   console.log('current user from profile:', currentUser)
   let currentUserID
