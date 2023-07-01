@@ -1,10 +1,10 @@
-import axios from 'axios';
+const axios = require('axios');
 
-export const geocodeCity = async (city, state, country) => {
+exports.geocodeCity = async (city, state, country) => {
   try {
     const address = `${city}, ${state}, ${country}`;
     const encodedAddress = encodeURIComponent(address);
-		const apiKey = 'AIzaSyBsY7TWsifdD_oYfwhEKBqVdLzfBaSeu6A'
+    const apiKey = 'AIzaSyBsY7TWsifdD_oYfwhEKBqVdLzfBaSeu6A'
 
     const response = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${apiKey}`
