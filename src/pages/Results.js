@@ -9,8 +9,8 @@ import PlacesAutocomplete from 'react-places-autocomplete' // Make sure to remov
 import Result from './Result'
 import ResultsMap from './ResultsMap'
 import Sort from './Sort'
-// const { geocodeCity } = require('../utils/geocodeCity')
-import { geocodeCity } from './utils/geocodeCity';
+const { geocodeCity } = require('../utils/geocodeCity')
+//import { geocodeCity } from './utils/geocodeCity';
 
 const StyledForm = styled(Form)`
   width: 40%;
