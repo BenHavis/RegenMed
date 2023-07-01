@@ -1,5 +1,5 @@
-import { geocodeCity } from './utils/geocodeCity';
-//const { geocodeCity } = require('./utils/geocodeCity')
+// import { geocodeCity } from './utils/geocodeCity';
+const { geocodeCity } = require('./utils/geocodeCity')
 const express = require('express')
 const { Sequelize, DataTypes } = require('sequelize')
 const { GOOGLE_MAPS_API_KEY } = require('./config.js')
