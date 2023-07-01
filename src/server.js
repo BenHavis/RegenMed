@@ -1,4 +1,5 @@
-const { geocodeCity } = require('./utils/geocodeCity')
+import { geocodeCity } from './utils/geocodeCity';
+//const { geocodeCity } = require('./utils/geocodeCity')
 const express = require('express')
 const { Sequelize, DataTypes } = require('sequelize')
 const { GOOGLE_MAPS_API_KEY } = require('./config.js')
@@ -10,7 +11,8 @@ const jwt = require('jsonwebtoken')
 const app = express()
 
 // Configure the PostgreSQL connection
-const sequelize = new Sequelize('postgres://postgres:my_modified_password@localhost:5432/postgres')
+const sequelize = new Sequelize('postgres://postgres:julius23!@localhost:5432/postgres')
+// const sequelize = new Sequelize('postgres://postgres:julius23!@/postgres?unix_socket=/cloudsql/regenmedglobal-75fda:us-central1:regenmedglobal');
 
 // Define the model for the "maindata" table
 const MainData = sequelize.define(
