@@ -1,7 +1,7 @@
 import React, { useContext, Fragment, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import { AppBar, Toolbar, IconButton, Typography, List, ListItem, ListItemText, useMediaQuery, Drawer, Hidden } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, List, ListItemText, useMediaQuery, Drawer, Hidden } from '@mui/material';
 import { AuthContext } from '../AuthContext'
 
 
@@ -32,13 +32,14 @@ const NavbarLogoLink = styled(Link)`
 const NavbarMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  flex-wrap: nowrap;
 `;
 
 const NavbarItem = styled(Link)`
   text-decoration: none;
   color: #fff;
   margin-left: 16px;
+	display: inline-block;
 
   &:hover {
     color: yellow;
@@ -46,19 +47,6 @@ const NavbarItem = styled(Link)`
     animation: ${bounceAnimation} 1s;
   }
 `
-
-
-const DrawerList = styled(List)`
-  width: 250px;
-`;
-
-const DrawerContent = styled.div`
-  width: 250px;
-  @media screen and (min-width: 600px) {
-    width: 300px;
-  }
-  background-color: rgba(255, 255, 255, 0.5);
-`;
 
 const MenuIconWrapper = styled.span`
   display: inline-block;
@@ -99,28 +87,29 @@ const Navbar = ({ userId }) => {
     { name: 'Doctor Login', path: '/doctorlogin' },
     { name: 'Logout', path: '/' }
   ];
-
-  const renderNavItems = (
-    <List className={isMobile ? 'drawerList' : 'navbarMenu'}>
-      {navItems.map((item) => (
-        (item.name === 'Logout' && !loggedIn) || (item.name === 'Doctor Login' && loggedIn) ? null : (
-          <ListItem
-            button
-            key={item.name}
-            component={Link}
-            to={item.path}
-            className="navbarItem"
-            onClick={() => {
-              toggleDrawer();
-              if (item.name === 'Logout') handleLogout();
-            }}
-          >
-            <ListItemText primary={item.name} />
-          </ListItem>
-        )
-      ))}
-    </List>
-  );
+	const renderNavItems = (
+		<List className={isMobile ? 'drawerList' : 'navbarMenu'}>
+			{navItems.map((item) => {
+				if ((item.name === 'Logout' && !loggedIn) || (item.name === 'Doctor Login' && loggedIn)) {
+					return null;
+				}
+	
+				return (
+					<NavbarItem
+						key={item.name}
+						to={item.path}
+						className="navbarItem"
+						onClick={() => {
+							toggleDrawer();
+							if (item.name === 'Logout') handleLogout();
+						}}
+					>
+						<ListItemText primary={item.name} />
+					</NavbarItem>
+				);
+			})}
+		</List>
+	);
 
   return (
     <AppBar position="fixed">
