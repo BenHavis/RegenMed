@@ -1,10 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import { useNavigate } from 'react-router-dom';
 import { Layout, Input, Button, Form, AutoComplete } from 'antd';
 import axios from 'axios';
-import { EnvironmentOutlined } from '@ant-design/icons';
 import { Icon } from '@iconify/react';
 import MainBack from '../assets/newdnagif.gif';
 import Services from './Services';
@@ -138,8 +137,6 @@ const Main = () => {
   const navigate = useNavigate();
   const [useCurrentLocation, setUseCurrentLocation] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [locationError, setLocationError] = useState(false);
-
   const [options, setOptions] = useState([]);
 
   const handleSearch = async (value) => {
@@ -196,20 +193,6 @@ const Main = () => {
     setAddress(value);
   };
 
-  const handleLocationSubmit = useCallback(async () => {
-    try {
-      const latitude = null;
-      const longitude = null;
-
-      if (useCurrentLocation) {
-        // Code to get current location
-      } else if (address.trim() !== '') {
-        // Code to geocode address
-      }
-    } catch (error) {
-      console.log('Error retrieving search results:', error);
-    }
-  }, [address, useCurrentLocation]);
 
   const [checkboxOptions, setCheckboxOptions] = useState([
     { label: 'PRP', value: 'PRP', checked: false },
@@ -267,8 +250,9 @@ const Main = () => {
               onChange={handleAddressChange}
               onSelect={(value) => setAddress(value)} // Update the selected value in the state
               searchOptions={{
-                types: ['(cities)'], // Limit suggestions to cities only
-              }}
+								types: ['(cities)'],
+								componentRestrictions: { country: ['us', 'ca', 'mx'] } // Limit suggestions to USA, Canada, Mexico
+							}}
             >
               {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                 <div>

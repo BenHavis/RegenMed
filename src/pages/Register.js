@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, reset } from 'react-hook-form'
 import styled from 'styled-components'
 import axios from 'axios'
 import { TextField, Button, Snackbar, Typography, InputAdornment, MenuItem } from '@mui/material'
@@ -60,7 +60,7 @@ const Register = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
   const [openSnackbar, setOpenSnackbar] = useState(false)
-	const { control, handleSubmit, formState: { errors }, getValues } = useForm({
+	const { control, handleSubmit, formState: { errors }, getValues, reset } = useForm({
 		defaultValues: {
 			treatments: [] // Set initial value as an empty array
 		}
@@ -86,7 +86,8 @@ const Register = () => {
 			const treatments = data.treatments.join(',') // Convert treatments array to string
 			const requestData = { ...data, treatments } // Add treatments to the request data
 			console.log('Request Body from front end:', JSON.stringify(requestData))
-			const response = await axios.post('http://localhost:3000/data', requestData, {
+			// const response = await axios.post('http://regenmedglobal.com/data', requestData, {
+				const response = await axios.post('https://helloworld-d6ksf5mpsa-uc.a.run.app/data', requestData, {
 				headers: {
 					'Content-Type': 'application/json'
 				}
@@ -96,6 +97,8 @@ const Register = () => {
         // Data inserted successfully
         setSuccessMessage('Registration Successful. Thank you for signing up!')
 				setOpenSnackbar(true)
+
+				reset()
 			} else {
         // Request was successful, but data insertion failed
         handleSetErrorMessage('Registration Failed. Please try again.')

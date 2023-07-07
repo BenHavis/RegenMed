@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import { Input, Button } from 'antd'
 import { UserOutlined, KeyOutlined } from '@ant-design/icons'
 import { AuthContext } from '../AuthContext'
-
 import axios from 'axios'
+const baseUrl = 'http://localhost:3000' 
 
 const Container = styled.div`
   width: 80%;
@@ -51,44 +51,44 @@ const DoctorLogin = () => {
   const navigate = useNavigate()
   const { login } = useContext(AuthContext)
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-	
-		try {
-			// Make a POST request to the server to verify the login credentials
-			const response = await axios.post('http://localhost:3000/login', { email, password });
-			// Log the response
-			console.log('Login response:', response);
-	
-			// Handle the response based on the server's authentication logic
-			if (response.status === 200) {
-				// Login successful
-				const id = response.data.userId;
-				login({ userData: JSON.stringify(response.data), id });
-	
-				console.log('Login successful');
-	
-				// Redirect to the user's profile page
-				const userData = { ...response.data }; // Include loggedIn property
-				navigate(`/profile/${id}`, { state: userData });
-			} else if (response.status === 401) {
-				// Login failed with "Invalid email or password" error
-				console.log('Login failed: Invalid email or password');
-				// Display the error message to the user
-				setError('Invalid email or password');
-			} else {
-				// Login failed with an unknown error
-				console.log('Login failed: Unknown error');
-				// Display a generic error message to the user
-				setError('Login failed. Please try again.');
-			}
-		} catch (error) {
-			// Handle any errors that occur during the request
-			console.error('Error during login:', error);
-			// Display a generic error message to the user
-			setError('An error occurred. Please try again later.');
-		}
-	};
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      // Make a POST request to the server to verify the login credentials
+     const response = await axios.post(`${baseUrl}/login`, { email, password });
+      // Log the response
+      console.log('Login response:', response)
+
+      // Handle the response based on the server's authentication logic
+      if (response.status === 200) {
+        // Login successful
+        const id = response.data.userId
+        login({ userData: JSON.stringify(response.data), id })
+
+        console.log('Login successful')
+
+        // Redirect to the user's profile page
+        const userData = { ...response.data } // Include loggedIn property
+        navigate(`/profile/${id}`, { state: userData })
+      } else if (response.status === 401) {
+        // Login failed with "Invalid email or password" error
+        console.log('Login failed: Invalid email or password')
+        // Display the error message to the user
+        setError('Invalid email or password')
+      } else {
+        // Login failed with an unknown error
+        console.log('Login failed: Unknown error')
+        // Display a generic error message to the user
+        setError('Login failed. Please try again.')
+      }
+    } catch (error) {
+      // Handle any errors that occur during the request
+      console.error('Error during login:', error)
+      // Display a generic error message to the user
+      setError('An error occurred. Please try again later.')
+    }
+  }
 
   return (
     <Container>
@@ -125,9 +125,9 @@ const DoctorLogin = () => {
           Login
         </Button>
         <p className='signup-text'>
-  {/* Don't have an account? <Link to='/register'>Sign Up</Link> or <Link to='/claim'>claim your profile</Link> */}
-	Don't have an account? <Link to='/register'>Sign Up</Link>
-</p>
+          {/* Don't have an account? <Link to='/register'>Sign Up</Link> or <Link to='/claim'>claim your profile</Link> */}
+          Don't have an account? <Link to='/register'>Sign Up</Link>
+        </p>
       </StyledForm>
     </Container>
   )

@@ -1,17 +1,5 @@
 import React from 'react';
 import { Row, Col, Form, Input, Button, message } from 'antd';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-
-
-const containerStyle = {
-  width: '100%',
-  height: '100%',
-};
-
-const center = {
-  lat: -37.8136,
-  lng: 144.9631,
-};
 
 const Contact = () => {
   const onFinish = (values) => {
@@ -26,13 +14,7 @@ const Contact = () => {
   return (
    <section className="map-section">
 		 <Row gutter={24} style={{ height: 'calc(100vh - 64px)' }}>
-      {/* <Col xs={24} md={12} style={{ height: '40%' }}>
-        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-          <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={12}>
-            <Marker position={center} />
-          </GoogleMap>
-        </LoadScript>
-      </Col> */}
+
       <Col xs={24} md={12} style={{ height: '100%' }}>
         <div style={{ padding: '2rem' }}>
           <h2>Contact Us</h2>

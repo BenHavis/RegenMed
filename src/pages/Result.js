@@ -7,15 +7,56 @@ import { getDistance } from 'geolib'
 
 const mainColor = '#4811ab' // Define the main color variable
 
+
 const StyledLayout = styled(Layout)`
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 3px ${mainColor};
+    transform: translateY(-2px);
+  }
+
   h4 {
     color: ${mainColor};
     font-weight: bold;
+    margin-bottom: 5px;
   }
-  .result-card.selected {
+
+  p {
+    margin: 0;
+  }
+
+  .link {
+    color: ${mainColor};
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: darken(${mainColor}, 10%);
+    }
+  }
+
+  .map-link {
+    color: #1890ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #40a9ff;
+    }
+  }
+
+  &.selected {
     background-color: #f5f5f5; /* Add your desired gray color value */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 3px ${mainColor};
+    transform: translateY(-2px);
   }
-`
+`;
+
 
 const apiKey = GOOGLE_MAPS_API_KEY
 
@@ -57,14 +98,16 @@ const Result = ({ result, isSelected, onProfileClick }) => {
   }
 
   // Function to fetch coordinates of a location using Google Maps Geocoding API
-  const getLocationCoordinates = async (location) => {
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
-    )
-    const data = await response.json()
-    const { lat, lng } = data.results[0].geometry.location
-    return { latitude: lat, longitude: lng }
-  }
+	const getLocationCoordinates = async (location) => {
+		const response = await fetch(
+			`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${apiKey}`
+		);
+		const data = await response.json();
+		console.log('Geocoding API response:', data); // Log the response object
+		const { lat, lng } = data.results[0].geometry.location;
+		console.log('Coordinates:', lat, lng); // Log the extracted coordinates
+		return { latitude: lat, longitude: lng };
+	};
 
   const navigate = useNavigate()
 

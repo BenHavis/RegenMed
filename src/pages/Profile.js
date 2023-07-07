@@ -1,21 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Typography } from '@mui/material'
 import Map from '../components/Map'
-import { AutoComplete, Input } from 'antd'
 import styled from 'styled-components'
 import { AuthContext } from '../AuthContext'
-import Select from 'react-select'
 import axios from 'axios'
-import AsyncSelect from 'react-select/async'
-import { analytics } from '../firebase'
+const isLocalhost = window.location.host.includes('localhost');
+const baseUrl = isLocalhost ? 'http://localhost:3000' : 'https://us-central1-regenmedglobal-75fda.cloudfunctions.net/api'
 
-const mainColor = '#4811ab' // Define the main color variable
+const mainColor = '#4811ab'; // Define the main color variable
 
 const EditButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: ${mainColor};
   font-weight: bold;
   margin-top: 16px;
@@ -27,63 +22,68 @@ const EditButton = styled.button`
 
   &:hover {
     color: white;
+    background-color: ${mainColor};
   }
-`
+`;
 
 const Container = styled.div`
-  min-height: calc(100vh - 64px); /* Subtract the height of the navbar (assuming it's 64px) */
+  min-height: calc(100vh - 64px);
   background-color: #f2f2f2;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Adjust the vertical alignment to start from the top */
+  justify-content: flex-start;
   align-items: center;
-  margin-top: 100px; /* Increase the margin-top value to move the content further down */
+  margin-top: 100px;
 
   .link {
     text-decoration: none;
     color: ${mainColor};
     font-weight: bold;
     margin-top: 16px;
+
+    &:hover {
+      color: white;
+    }
   }
-`
+`;
 
 const ProfileWrapper = styled.div`
   display: flex;
   width: 100%;
   margin-left: 2rem;
-`
+`;
 
 const MapContainer = styled.div`
   flex: 1;
   margin-right: 2rem;
-`
+`;
 
 const CardContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: 80%; /* Adjust the width value to make the cards wider */
+  width: 80%;
 
-	.select-dropdown {
-  appearance: none;
-  background-color: #f2f2f2;
-  border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  .select-dropdown {
+    appearance: none;
+    background-color: #f2f2f2;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
 
-.select-dropdown:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #bfbfbf;
-}
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #bfbfbf;
+    }
+  }
 
   @media (max-width: 768px) {
     width: 100%;
   }
-`
+`;
 
 const CloseButton = styled.button`
   position: absolute;
@@ -98,7 +98,7 @@ const CloseButton = styled.button`
   &:hover {
     color: white;
   }
-`
+`;
 
 const Card = styled.section`
   display: flex;
@@ -109,17 +109,27 @@ const Card = styled.section`
   padding: 12px;
   margin-bottom: 16px;
   width: 60%;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 
   a {
     color: ${mainColor};
     text-decoration: none;
     font-weight: bold;
     margin-top: 16px;
+    transition: color 0.3s;
+
+    &:hover {
+      color: white;
+    }
   }
 
   &:hover {
     background-color: ${mainColor};
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: none;
 
     a {
       color: white;
@@ -149,6 +159,7 @@ const Card = styled.section`
   }
 `;
 
+
 const Profile = () => {
   const { loggedIn, currentUser } = useContext(AuthContext)
   const [options, setOptions] = useState([])
@@ -173,8 +184,7 @@ const Profile = () => {
     const id = url.substring(url.lastIndexOf('/') + 1) // Extract the ID from the URL
 
     // Make an API call to fetch the profile data using the ID
-    axios
-      .get(`http://localhost:3000/api/profiles/${id}`)
+    axios.get(`${baseUrl}/api/profiles/${id}`)
       .then((response) => {
         console.log('Profile data:', response.data)
         const data = response.data // Assuming the response contains the profile data
@@ -195,19 +205,6 @@ const Profile = () => {
         // Perform any necessary error handling or display an error message
       })
   }, [])
-
-  // const [editMode, setEditMode] = useState(false)
-  // const [fieldValue, setFieldValue] = useState('')
-  // const [cardStates, setCardStates] = useState([
-  //   { editMode: false, fieldValue: '' }, // Card 0
-  //   { editMode: false, fieldValue: '' }, // Card 1
-  //   { editMode: false, fieldValue: '' }, // Card 2
-  //   { editMode: false, fieldValue: '' }, // Card 3
-  //   { editMode: false, fieldValue: '' }, // Card 4
-  //   { editMode: false, fieldValue: '' }, // Card 5
-  //   { editMode: false, fieldValue: '' }, // Card 6
-  //   { editMode: false, fieldValue: '' } // Card 7
-  // ])
 
   const handleAddTreatment = (event, index) => {
     const selectedTreatment = event.target.value
@@ -337,7 +334,7 @@ const Profile = () => {
     // Make the API call to update the profile with the provided ID and field value
     axios
       .put(
-				`http://localhost:3000/api/profiles/${id}`,
+				`https://helloworld-d6ksf5mpsa-uc.a.run.app/api/profiles/${id}`,
 				{ field: fieldName, value: cardStates[index].fieldValue },
 				{ headers: { 'Content-Type': 'application/json' } }
       )
@@ -381,51 +378,9 @@ const Profile = () => {
 	};
 	
 
-  // const initializeCardStates = () => {
-  //   if (state) {
-  //     const fieldNames = ['Clinic/Doctor name', 'Description', 'Conditions', 'Treatments', 'Website', 'Address', 'Email', 'Phone']
-  //     const cardStates = fieldNames.map((fieldName) => ({
-  //       editMode: false,
-  //       fieldName,
-  //       fieldValue:
-  // 				fieldName === 'Clinic/Doctor name'
-  // 				  ? state.name
-  // 				  : fieldName === 'Description'
-  // 				    ? state.description
-  // 				    : fieldName === 'Conditions'
-  // 				      ? state.conditions
-  // 				      : fieldName === 'Treatments'
-  // 				        ? state.treatments
-  // 				        : fieldName === 'Website'
-  // 				          ? state.website
-  // 				          : fieldName === 'Address'
-  // 				            ? state.address
-  // 				            : fieldName === 'Email'
-  // 				              ? state.email
-  // 				              : fieldName === 'Phone'
-  // 				                ? state.phone
-  // 				                : ''
-  //     }))
-  //     setCardStates(cardStates)
-  //   }
-  // }
-
-  // // Initialize the card states when the component mounts
-  // useEffect(() => {
-  //   initializeCardStates()
-  //   console.log(cardStates)
-  // }, [])
 
   console.log('cardStates:', cardStates)
 
-  // if (!state) {
-  //   return (
-  //     <Container>
-  //       <h3>No profile data available.</h3>
-  //     </Container>
-  //   )
-  // }
-	  // Check if cardStates is empty and display a message if no profile data is available
   if (cardStates.length === 0) {
     return (
       <Container>
@@ -434,17 +389,6 @@ const Profile = () => {
     )
   }
 
-  // const {
-  //   name,
-  //   website,
-  //   address,
-  //   email,
-  //   phone,
-  //   description,
-  //   treatments,
-  //   conditions,
-  //   firstTimeLogin
-  // } = state
 	console.log('profileid: ', profileId)
   return (
     <Container>
