@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, Suspense } from 'react'
-import { Layout, Pagination, Input, Form, Button, Select, Progress as Antprogress, AutoComplete, Checkbox as AntCheckbox } from 'antd'
+import { Layout, Pagination, Input, Form, Button, Select, Progress as Antprogress, AutoComplete } from 'antd'
 import { getDistance } from 'geolib'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
