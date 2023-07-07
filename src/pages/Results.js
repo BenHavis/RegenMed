@@ -101,8 +101,6 @@ const Results = () => {
   const [selectedMarkerIndex, setSelectedMarkerIndex] = useState(-1)
   const [currentResults, setCurrentResults] = useState([])
   const [sortedResults, setSortedResults] = useState([])
-  const [useCurrentLocation, setUseCurrentLocation] = useState(false)
-  const [currentLocation, setCurrentLocation] = useState('')
   const [checkboxOptions, setCheckboxOptions] = useState(
     state?.checkedOptions ?? [
       { label: 'PRP', value: 'PRP', checked: false },
@@ -119,9 +117,7 @@ const Results = () => {
   const [userLocation, setUserLocation] = useState(null)
   const [filterCoordinates, setFilterCoordinates] = useState(null)
 
-  const handleUseCurrentLocationChange = (event) => {
-    setUseCurrentLocation(event.target.checked)
-  }
+
 
   const handleSearch = async (value) => {
     setFilterTerm(value)

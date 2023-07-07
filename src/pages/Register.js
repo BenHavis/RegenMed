@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useForm, Controller, reset } from 'react-hook-form'
 import styled from 'styled-components'
 import axios from 'axios'
-import { TextField, Button, Snackbar, Typography, InputAdornment, MenuItem } from '@mui/material'
+import { TextField, Button, Snackbar, Typography, MenuItem } from '@mui/material'
 import MuiAlert from '@mui/material/Alert'
 import { states, countries } from '../config'
-import Select from 'react-select'
 
 
 const Container = styled.div`
@@ -56,8 +55,6 @@ const Title = styled.h3`
 `
 
 const Register = () => {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
   const [openSnackbar, setOpenSnackbar] = useState(false)
 	const { control, handleSubmit, formState: { errors }, getValues, reset } = useForm({
@@ -67,14 +64,7 @@ const Register = () => {
 	});
 	
   const [errorMessage, setErrorMessage] = useState('')
-	const [dropdownHeight, setDropdownHeight] = useState(null);
 
-	useEffect(() => {
-		const menu = document.getElementsByClassName('react-dropdown-select-dropdown')[0];
-		if (menu) {
-			setDropdownHeight(menu.offsetHeight);
-		}
-	}, []);
  
   // Function to set the error message
   const handleSetErrorMessage = (message) => {

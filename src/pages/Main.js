@@ -212,12 +212,6 @@ const Main = () => {
     return option.checked ? { color: 'white', backgroundColor: 'var(--main-color)' } : {};
   };
 
-  const handleSuggestionClick = (suggestion) => {
-    const filterTerm = suggestion.value.toString(); // Convert to string
-    setSearchTerm(filterTerm.toLowerCase());
-    console.log(`search term: ${searchTerm}`);
-  };
-
   console.log('Render options:', options);
 
   return (
