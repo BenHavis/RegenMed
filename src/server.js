@@ -104,12 +104,18 @@ MainData.beforeCreate(async (data) => {
 
 app.use(express.json()) // Add this middleware to parse the JSON request body
 
+const allowedOrigins = ['http://localhost:3000', 'https://tourmaline-dolphin-26b1c3.netlify.app'];
+
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3001')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE') // Add PUT method
-  next()
-})
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Add PUT method
+  next();
+});
+
 
 app.get('/data', async (req, res) => {
   try {
