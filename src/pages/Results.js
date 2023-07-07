@@ -10,7 +10,7 @@ import Result from './Result'
 import ResultsMap from './ResultsMap'
 import Sort from './Sort'
 const { GOOGLE_MAPS_API_KEY } = require('../config.js')
-const baseUrl = 'https://regenmedglobal-nksow3bjr-benhavis1-gmailcom.vercel.app/?vercelToolbarCode=GDgAmH9dOPKJ8CY'
+const baseUrl = 'https://regenmedglobal.vercel.app/'
 
 const StyledForm = styled(Form)`
   width: 40%;
